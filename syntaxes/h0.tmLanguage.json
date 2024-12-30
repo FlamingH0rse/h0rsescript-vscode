@@ -1,0 +1,234 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "H0rsescript",
+	"patterns": [
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#code"
+		}
+	],
+	"repository": {
+		"comments": {
+			"name": "comment.line.h0",
+			"match": "#.*$"
+		},
+		"code": {
+			"patterns": [
+				{
+					"include": "#literal"
+				},
+				{
+					"include": "#keyword-statement"
+				},
+				{
+					"include": "#delete-empty-statement"
+				},
+				{
+					"include": "#assignment-statement"
+				},
+				{
+					"include": "#function-calls"
+				},
+				{
+					"include": "#assignment-operator"
+				}
+			]
+		},
+		"literal": {
+			"patterns": [
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#booleans"
+				},
+				{
+					"include": "#null"
+				},
+				{
+					"include": "#numbers"
+				}
+			]
+		},
+		"keyword-statement": {
+			"patterns": [
+				{
+					"include": "#define-statement"
+				},
+				{
+					"include": "#include-statement"
+				},
+				{
+					"include": "#keyword"
+				}
+			]
+		},
+		"delete-empty-statement": {
+			"patterns": [
+				{
+					"match": "(<|<-)\\s*([a-zA-Z_][a-zA-Z0-9_]*)",
+					"captures": {
+						"1": {
+							"name": "keyword.operator.remove.h0"
+						},
+						"2": {
+							"name": "variable.name.h0"
+						}
+					}
+				}
+			]
+		},
+		"assignment-statement": {
+			"patterns": [
+				{
+					"match": "([a-zA-Z_][a-zA-Z0-9_]*)(\\s*(->|<->|>)\\s*)",
+					"captures": {
+						"1": {
+							"name": "variable.name.h0"
+						},
+						"2": {
+							"name": "keyword.operator.add.h0"
+						}
+					}
+				},
+				{
+					"include": "#function-calls"
+				}
+			]
+		},
+		"function-calls": {
+			"patterns": [
+				{
+					"include": "#function-name"
+				},
+				{
+					"include": "#arguments-group"
+				}
+			]
+		},
+		"function-name": {
+			"patterns": [
+				{
+					"match": "([a-zA-Z_][a-zA-Z0-9_]*(?:\\.[a-zA-Z_][a-zA-Z0-9_]*)*)\\.([a-zA-Z_][a-zA-Z0-9_]*)?",
+					"captures": {
+						"1": {
+							"name": "entity.name.class.h0"
+						},
+						"2": {
+							"name": "entity.name.function.h0"
+						}
+					}
+				},
+				{
+					"name": "entity.name.function.h0",
+					"match": "[a-zA-Z_][a-zA-Z0-9_]*"
+				}
+			]
+		},
+		"assignment-operator": {
+			"name": "keyword.operator.h0",
+			"match": "<->|<-|<|->|>"
+		},
+		"identifier": {
+			"name": "variable.name.h0",
+			"match": "[a-zA-Z_][a-zA-Z0-9_]*"
+		},
+		"arguments-group": {
+			"name": "support.function.parameter.h0",
+			"begin": "\\[",
+			"end": "\\]",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.paren.open"
+				}
+			},
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.paren.end"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#literal"
+				},
+				{
+					"include": "#identifier"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.h0",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.h0",
+					"match": "\\\\."
+				},
+				{
+					"name": "variable.other.h0",
+					"match": ":[A-Za-z_][A-Za-z0-9_]*"
+				}
+			]
+		},
+		"booleans": {
+			"name": "constant.language.boolean.h0",
+			"match": "\\bTRUE\\b|\\bFALSE\\b"
+		},
+		"null": {
+			"name": "constant.language.null.h0",
+			"match": "\\bNULL\\b"
+		},
+		"numbers": {
+			"name": "constant.numeric.h0",
+			"match": "-?\\d+(\\.\\d+)*"
+		},
+		"define-statement": {
+			"match": "(\\$)(define)\\s+([a-zA-Z_][a-zA-Z0-9_]*)",
+			"captures": {
+				"1": {
+					"name": "meta.selector.h0"
+				},
+				"2": {
+					"name": "keyword.h0"
+				},
+				"3": {
+					"name": "entity.name.function"
+				}
+			}
+		},
+		"include-statement": {
+			"match": "(\\$)(include)\\s+(.*)",
+			"captures": {
+				"1": {
+					"name": "meta.selector.h0"
+				},
+				"2": {
+					"name": "keyword.h0"
+				},
+				"3": {
+					"patterns": [
+						{
+							"name": "string.unquoted.h0",
+							"match": "([a-zA-Z_][a-zA-Z0-9_]*)(\\.[a-zA-Z_][a-zA-Z0-9_]*)*"
+						}
+					]
+				}
+			}
+		},
+		"keyword": {
+			"match": "(\\$)(define|include|parameters|mode|return|end)",
+			"captures": {
+				"1": {
+					"name": "meta.selector.h0"
+				},
+				"2": {
+					"name": "keyword.h0"
+				}
+			}
+		}
+	},
+	"scopeName": "source.h0"
+}

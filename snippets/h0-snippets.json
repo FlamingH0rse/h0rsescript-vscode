@@ -1,0 +1,22 @@
+{
+    "Define Statement": {
+      "prefix": "$define",
+      "body": [
+        "\\$define ${1:name}",
+        "\t${3:body}",
+        "\\$end"
+      ],
+      "description": "Define a block with parameters and body"
+    },
+    "Include Statement": {
+      "prefix": "$include",
+      "body": ["\\$include ${1:h0}"],
+      "description": "Include modules"
+    },
+    "Parameters Statement": {
+      "prefix": "$parameters",
+      "body": ["\\$parameters ${1:args}"],
+      "description": "Define parameters"
+    }
+}
+  

@@ -1,0 +1,47 @@
+{
+	"name": "h0rsescript",
+	"author": {
+		"name": "FlamingH0rse",
+		"url": "https://github.com/FlamingH0rse/"
+	},
+	"icon": "./icon.jpg",
+	"publisher": "FlamingH0rse",
+	"displayName": "H0rsescript",
+	"description": " H0rsescript language support for Visual Studio Code",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.96.0"
+	},
+	"categories": [
+		"Programming Languages",
+		"Snippets"
+	],
+	"contributes": {
+		"languages": [
+			{
+				"id": "h0",
+				"aliases": [
+					"H0rsescript",
+					"h0"
+				],
+				"extensions": [
+					".h0"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "h0",
+				"scopeName": "source.h0",
+				"path": "./syntaxes/h0.tmLanguage.json"
+			}
+		],
+		"snippets": [
+			{
+				"language": "h0",
+				"path": "./snippets/h0-snippets.json"
+			}
+		]
+	}
+}
