@@ -1,4 +1,4 @@
-# h0rsescript for Visual Studio Code
+# H0rsescript for Visual Studio Code
 
 This is a Visual Studio Code extension for the [h0rsescript](https://github.com/FlamingH0rse/h0rsescript) language
 
